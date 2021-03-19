@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.17)
+project(Project_1)
+
+set(CMAKE_CXX_STANDARD 20)
+
+add_executable(Project_1 main.cpp band.cpp band.h person.cpp person.h date.cpp date.h artist.cpp artist.h song.cpp song.h album.cpp album.h)
