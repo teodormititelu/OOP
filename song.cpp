@@ -15,13 +15,13 @@ void song::add_collaborator( string &collaborator ){
     collaborators.push_back( collaborator );
 }
 
-string song::get_name(){
+string song::get_name() const {
     return name;
 }
-string song::get_release_date(){
+string song::get_release_date() const {
     return release_date;
 }
-string song::get_performer(){
+string song::get_performer() const {
     return performer;
 }
 bool song::check_collaborator( string &collaborator ){
@@ -31,7 +31,9 @@ bool song::check_collaborator( string &collaborator ){
 }
 
 istream& operator>> ( istream &cin, song &_song ){
-    cin >> _song.name >> _song.release_date >> _song.performer;
+    getline( cin, _song.name );
+    getline( cin, _song.release_date );
+    getline( cin, _song.performer );
     return cin;
 }
 ostream& operator<< ( ostream &cout, const song& _song ){

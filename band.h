@@ -1,5 +1,4 @@
-#ifndef PROJECT_1_BAND_H
-#define PROJECT_1_BAND_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -28,12 +27,15 @@ public:
         singles.clear();
         manager = person();
     }
-    band( string &_name, vector < artist > &_members, person &_manager, vector < album > &_albums, vector < song > &_singles){
+    band( string _name, vector < artist > _members, person _manager, vector < album > _albums, vector < song > _singles){
         name = _name;
         members = _members;
         manager = _manager;
         albums = _albums;
         singles = _singles;
+    }
+    ~band(){
+        cout << name << " broke up\n";
     }
 
     string get_name();
@@ -51,4 +53,3 @@ public:
     friend ostream& operator<< ( ostream &cout, const band& _band );
 };
 
-#endif //PROJECT_1_BAND_H

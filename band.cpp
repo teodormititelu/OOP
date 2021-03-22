@@ -45,8 +45,24 @@ ostream& operator<< ( ostream &cout, const band& _band ){
     cout << "Band name: " << _band.name << '\n';
     cout << "Members: ";
     for( int i = 0; i < _band.members.size(); ++i ){
-        cout << _band.members[i];
+        cout << _band.members[i].get_first_name() << ' ' << _band.members[i].get_last_name();
         if( i != _band.members.size()-1 )
+            cout << ", ";
+    }
+    cout << '\n';
+    for( int i = 0; i < _band.albums.size(); ++i ){
+        cout << "\"" << _band.albums[i].get_name() << "\": ";
+        for( int j = 0; j < _band.albums[i].get_length(); ++j ){
+            cout << "\"" <<_band.albums[i].get_song( j ).get_name() << "\"";
+            if( j != _band.albums[i].get_length() - 1 )
+                cout << ", ";
+        }
+        cout << '\n';
+    }
+    cout << "Singles: ";
+    for( int i = 0; i < _band.singles.size(); ++i ){
+        cout << "\"" << _band.singles[i].get_name() << "\"";
+        if( i != _band.singles.size() - 1 )
             cout << ", ";
     }
     cout << '\n';

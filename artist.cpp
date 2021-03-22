@@ -9,6 +9,9 @@ using namespace std;
 void artist::set_role( string &r ){
     role = r;
 }
+void artist::set_intruments( vector < string > &i ){
+    instruments = i;
+}
 void artist::add_instrument( string &i ){
     instruments.push_back( i );
 }
@@ -29,12 +32,13 @@ bool artist::check_instrument( string &instrument ){
 
 ostream& operator<< ( ostream &cout, const artist &a ){
     cout << a.first_name << ' ' << a.last_name << '\n';
-    cout << "Gender: " << a.gender << '\n';
-    cout << "Age: " << a.age << " (birth date: " << a.birth_date << ")\n";
     cout << "Main role: " << a.role << '\n';
     cout << "Instruments played: ";
-    for( int i = 0; i < a.instruments.size(); ++i )
-        cout << a.instruments[i] << ' ';
+    for( int i = 0; i < a.instruments.size(); ++i ){
+        cout << a.instruments[i];
+        if( i != a.instruments.size()-1 )
+            cout << ", ";
+    }
     cout << '\n';
     return cout;
 }
