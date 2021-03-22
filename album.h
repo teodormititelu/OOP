@@ -1,5 +1,4 @@
-#ifndef PROJECT_1_ALBUM_H
-#define PROJECT_1_ALBUM_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -10,25 +9,26 @@ using namespace std;
 class album{
     string name;
     vector < song > songs;
-    string type;
+    int length;
 
 public:
     album(){
-        name = type = "";
+        name = "";
+        length = 0;
         songs.clear();
     }
-    album( string &_name, vector < song > &_songs, string _type = "LP" ){
+    album( string _name, int _length, vector < song > _songs ){
         name = _name;
+        length = _length;
         songs = _songs;
-        type = _type;
     }
 
-    string get_name();
-    string get_type();
+    string get_name() const;
+    int get_length() const;
+    song get_song( int index ) const;
     bool check_song( song &_song );
 
     void set_name( string &_name );
-    void set_type( string &_type );
     void add_song( song &_song );
 
     friend istream& operator>> ( istream &cin, album &_album );
@@ -38,4 +38,3 @@ public:
 
     bool operator==( const album &_album );
 };
-#endif //PROJECT_1_ALBUM_H

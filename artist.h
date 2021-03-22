@@ -1,5 +1,4 @@
-#ifndef PROJECT_1_ARTIST_H
-#define PROJECT_1_ARTIST_H
+#pragma once
 
 #include <iostream>
 #include "person.h"
@@ -17,12 +16,14 @@ public:
         role = "None";
         instruments.clear();
     }
-    artist( person &p, string &r, vector < string > &i) : person(p){
+    artist( person p ) : person(p){}
+    artist( person p, string r, vector < string > i ) : person(p){
         role = r;
         instruments = i;
     }
 
     void set_role( string &r );
+    void set_intruments( vector < string > &i );
     void add_instrument( string &i );
 
     string get_role();
@@ -38,4 +39,3 @@ public:
     bool operator==( const artist &a );
 };
 
-#endif //PROJECT_1_ARTIST_H

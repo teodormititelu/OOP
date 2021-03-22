@@ -1,5 +1,4 @@
-#ifndef PROJECT_1_PERSON_H
-#define PROJECT_1_PERSON_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -21,7 +20,7 @@ public:
         first_name = last_name = gender = birth_date = "None";
         age = 0;
     }
-    person( string &f_name, string &l_name, string &gen, int &x, string &date){
+    person( string f_name, string l_name, string gen, int x, string date){
         first_name = f_name;
         last_name = l_name;
         gender = gen;
@@ -34,10 +33,10 @@ public:
     void set_age( int &x );
     void set_birth_date( string &date );
 
-    string get_first_name();
-    string get_last_name();
-    int get_age();
-    string get_birth_date();
+    string get_first_name() const;
+    string get_last_name() const;
+    int get_age() const;
+    string get_birth_date() const;
 
     friend ostream& operator<< (ostream &cout, const person &p);
     friend istream& operator>> (istream &cin, person &p);
@@ -46,5 +45,3 @@ public:
 
     bool operator==( const person &p );
 };
-
-#endif //PROJECT_1_PERSON_H

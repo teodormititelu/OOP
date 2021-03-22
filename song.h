@@ -1,5 +1,4 @@
-#ifndef PROJECT_1_SONG_H
-#define PROJECT_1_SONG_H
+#pragma once
 
 #include <iostream>
 #include <string>
@@ -22,7 +21,7 @@ public:
         name = release_date = performer = "";
         collaborators.clear();
     }
-    song( string &_name, string &_release_date, string &_performer ) {
+    song( string _name, string _release_date, string _performer ) {
         name = _name;
         release_date = _release_date;
         performer = _performer;
@@ -33,9 +32,9 @@ public:
     void set_performer( string &_performer );
     void add_collaborator( string &collaborator );
 
-    string get_name();
-    string get_release_date();
-    string get_performer();
+    string get_name() const;
+    string get_release_date() const;
+    string get_performer() const;
     bool check_collaborator( string &collaborator );
 
     friend istream& operator>> ( istream &cin, song &_song );
@@ -46,5 +45,3 @@ public:
     bool operator==( const song &_song );
     bool operator!=( const song &_song );
 };
-
-#endif //PROJECT_1_SONG_H
