@@ -35,7 +35,7 @@ public:
     string get_name() const;
     string get_release_date() const;
     string get_performer() const;
-    bool check_collaborator( string &collaborator );
+    bool has_collaborator( string &collaborator );
 
     friend istream& operator>> ( istream &cin, song &_song );
     friend ostream& operator<< ( ostream &cout, const song& _song );

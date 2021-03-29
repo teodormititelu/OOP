@@ -24,7 +24,7 @@ string song::get_release_date() const {
 string song::get_performer() const {
     return performer;
 }
-bool song::check_collaborator( string &collaborator ){
+bool song::has_collaborator( string &collaborator ){
     for( int i = 0; i < collaborators.size(); ++i )
         if( collaborators[i] == collaborator ) return true;
     return false;
@@ -55,6 +55,7 @@ song &song::operator= ( const song& _song ){
     this -> name = _song.name ;
     this -> release_date = _song.release_date;
     this -> performer = _song.performer;
+    collaborators.clear();
     for( int i = 0; i <= _song.collaborators.size(); ++i )
         this -> collaborators.push_back( _song.collaborators[i] );
 
