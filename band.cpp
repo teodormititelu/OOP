@@ -1,7 +1,10 @@
 #include <iostream>
+#include <iomanip>
 #include <vector>
 #include <string>
 #include "band.h"
+
+using namespace std;
 
 string band::get_name(){
     return name;
@@ -51,9 +54,9 @@ ostream& operator<< ( ostream &cout, const band& _band ){
     }
     cout << '\n';
     for( int i = 0; i < _band.albums.size(); ++i ){
-        cout << "\"" << _band.albums[i].get_name() << "\": ";
+        cout << quoted( _band.albums[i].get_name() ) << ": ";
         for( int j = 0; j < _band.albums[i].get_length(); ++j ){
-            cout << "\"" <<_band.albums[i].get_song( j ).get_name() << "\"";
+            cout << quoted( _band.albums[i].get_song( j ).get_name() );
             if( j != _band.albums[i].get_length() - 1 )
                 cout << ", ";
         }
@@ -61,7 +64,7 @@ ostream& operator<< ( ostream &cout, const band& _band ){
     }
     cout << "Singles: ";
     for( int i = 0; i < _band.singles.size(); ++i ){
-        cout << "\"" << _band.singles[i].get_name() << "\"";
+        cout << quoted( _band.singles[i].get_name() );
         if( i != _band.singles.size() - 1 )
             cout << ", ";
     }

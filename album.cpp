@@ -26,6 +26,7 @@ void album::set_name( string &_name ){
 }
 void album::add_song( song &_song ){
     songs.push_back( _song );
+    length++;
 }
 
 istream& operator>> ( istream &cin, album &_album ){
@@ -55,6 +56,7 @@ ostream& operator<< (ostream &cout, const album &_album ){
 album &album::operator= ( const album& _album ){
     this -> name = _album.name;
     this -> length = _album.length;
+    songs.clear();
     for( int i = 0; i < _album.songs.size(); ++i )
         this -> songs.push_back( _album.songs[i] );
 
