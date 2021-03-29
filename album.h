@@ -9,17 +9,14 @@ using namespace std;
 class album{
     string name;
     vector < song > songs;
-    int length;
 
 public:
     album(){
         name = "";
-        length = 0;
         songs.clear();
     }
-    album( string _name, int _length, vector < song > _songs ){
+    album( string _name, vector < song > _songs ){
         name = _name;
-        length = _length;
         songs = _songs;
     }
 
