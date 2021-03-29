@@ -71,7 +71,7 @@ int main() {
         }
     }
 
-    album Steal_this_album( a_name, length, songs );
+    album Steal_this_album( a_name, songs );
     cout << Steal_this_album << '\n';
 
     cout << Steal_this_album.get_song( 3 ) << '\n';

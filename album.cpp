@@ -10,7 +10,7 @@ string album::get_name() const {
     return name;
 }
 int album::get_length() const{
-    return length;
+    return songs.size();
 }
 song album::get_song( int index ) const{
     return songs[index];
@@ -26,23 +26,23 @@ void album::set_name( string &_name ){
 }
 void album::add_song( song &_song ){
     songs.push_back( _song );
-    length++;
 }
 
 istream& operator>> ( istream &cin, album &_album ){
     getline( cin, _album.name );
-    cin >> _album.length;
+    int length;
+    cin >> length;
     cin.get();
 
     song _song;
-    for( int i = 0; i < _album.length; ++i ) {
+    for( int i = 0; i < length; ++i ) {
         cin >> _song;
         _album.songs.push_back( _song );
     }
     return cin;
 }
 ostream& operator<< (ostream &cout, const album &_album ){
-    cout << "Album name: " << _album.name << " (" << _album.length << " songs)\n";
+    cout << "Album name: " << _album.name << " (" << _album.songs.size() << " songs)\n";
     cout << "Songs: ";
     for( int i = 0; i < _album.songs.size(); ++i ){
         cout << _album.songs[i].get_name() ;
@@ -55,7 +55,6 @@ ostream& operator<< (ostream &cout, const album &_album ){
 
 album &album::operator= ( const album& _album ){
     this -> name = _album.name;
-    this -> length = _album.length;
     songs.clear();
     for( int i = 0; i < _album.songs.size(); ++i )
         this -> songs.push_back( _album.songs[i] );
@@ -64,7 +63,7 @@ album &album::operator= ( const album& _album ){
 }
 
 bool album::operator==( const album &_album ){
-    if( name == _album.name && length == _album.length ) {
+    if( name == _album.name && get_length() == _album.get_length() ) {
         for (int i = 0; i < songs.size() && i < _album.songs.size(); ++i)
             if ( songs[i] != _album.songs[i])
                 return false;
