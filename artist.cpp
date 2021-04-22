@@ -28,22 +28,22 @@ bool artist::check_instrument( const std::string &instrument ){
     return false;
 }
 
-std::ostream& operator<< ( std::ostream &cout, const artist &a ){
-    cout << a.first_name << ' ' << a.last_name << '\n';
-    cout << "Main role: " << a.role << '\n';
-    cout << "Instruments played: ";
+std::ostream& operator<< ( std::ostream &out, const artist &a ){
+    out << a.first_name << ' ' << a.last_name << '\n';
+    out << "Main role: " << a.role << '\n';
+    out << "Instruments played: ";
     for( int i = 0; i < a.instruments.size(); ++i ){
-        cout << a.instruments[i];
+        out << a.instruments[i];
         if( i != a.instruments.size()-1 )
-            cout << ", ";
+            out << ", ";
     }
-    cout << '\n';
-    return cout;
+    out << '\n';
+    return out;
 }
-std::istream& operator>> ( std::istream &cin, artist &a ){
-    cin >> a.first_name >> a.last_name >> a.gender >> a.age >> a.birth_date >> a.role;
+std::istream& operator>> ( std::istream &in, artist &a ){
+    in >> a.first_name >> a.last_name >> a.gender >> a.age >> a.birth_date >> a.role;
     if( a.age < 0 ) std::cout << a.age << " is not a valid age!";
-    return cin;
+    return in;
 }
 
 artist &artist::operator= ( const artist &a ){

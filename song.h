@@ -35,8 +35,8 @@ public:
     std::string get_performer() const;
     bool has_collaborator( const std::string &collaborator );
 
-    friend std::istream& operator>> ( std::istream &cin, song &_song );
-    friend std::ostream& operator<< ( std::ostream &cout, const song& _song );
+    friend std::istream& operator>> ( std::istream &in, song &_song );
+    friend std::ostream& operator<< ( std::ostream &out, const song& _song );
 
     song &operator= ( const song& song );
 

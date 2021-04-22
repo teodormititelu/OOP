@@ -22,15 +22,15 @@ public:
         return "Manager at: " + business;
     }
 
-    friend std::istream& operator >>  ( std::istream& cin, manager &m ){
-        cin >> m.first_name >> m.last_name >> m.gender >> m.age >> m.birth_date >> m.business;
-        return cin;
+    friend std::istream& operator >>  ( std::istream& in, manager &m ){
+        in >> m.first_name >> m.last_name >> m.gender >> m.age >> m.birth_date >> m.business;
+        return in;
     }
 
-    friend std::ostream& operator << ( std::ostream& cout, const manager &m ){
-        cout << m.first_name << ' ' << m.last_name << '\n';
-        cout << "Manager at:  " << m.business << '\n';
-        return cout;
+    friend std::ostream& operator << ( std::ostream& out, const manager &m ){
+        out << m.first_name << ' ' << m.last_name << '\n';
+        out << "Manager at:  " << m.business << '\n';
+        return out;
     }
 
     manager &operator = ( const manager& mng ){

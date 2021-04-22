@@ -31,16 +31,16 @@ std::string person::get_job() {
     return "unemployed";
 }
 
-std::ostream& operator<< (std::ostream &cout, const person &p){
-    cout << p.first_name << ' ' << p.last_name << '\n';
-    cout << "Gender: " << p.gender << '\n';
-    cout << "Age: " << p.get_age() << " (birth date: " << p.get_birth_date() << ")\n";;
-    return cout;
+std::ostream& operator<< (std::ostream &out, const person &p){
+    out << p.first_name << ' ' << p.last_name << '\n';
+    out << "Gender: " << p.gender << '\n';
+    out << "Age: " << p.get_age() << " (birth date: " << p.get_birth_date() << ")\n";;
+    return out;
 }
-std::istream& operator>> (std::istream &cin, person &p){
-    cin >> p.first_name >> p.last_name >> p.gender >> p.age >> p.birth_date;
+std::istream& operator>> (std::istream &in, person &p){
+    in >> p.first_name >> p.last_name >> p.gender >> p.age >> p.birth_date;
     if( p.age < 0 ) std::cout << p.age << " is not a valid age!\n";
-    return cin;
+    return in;
 }
 
 person &person::operator=(const person &p){

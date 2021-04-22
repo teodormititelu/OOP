@@ -29,8 +29,8 @@ public:
 
     bool check_instrument( const std::string &instrument );
 
-    friend std::ostream& operator<< ( std::ostream &cout, const artist &a );
-    friend std::istream& operator>> ( std::istream &cin, artist &a );
+    friend std::ostream& operator<< ( std::ostream &out, const artist &a );
+    friend std::istream& operator>> ( std::istream &in, artist &a );
 
     artist &operator= ( const artist &a );
 

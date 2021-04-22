@@ -38,8 +38,8 @@ public:
     std::string get_birth_date() const;
     virtual std::string get_job() ;
 
-    friend std::ostream& operator<< (std::ostream &cout, const person &p);
-    friend std::istream& operator>> (std::istream &cin, person &p);
+    friend std::ostream& operator<< (std::ostream &out, const person &p);
+    friend std::istream& operator>> (std::istream &in, person &p);
 
     person &operator=(const person &p);
 

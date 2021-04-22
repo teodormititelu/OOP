@@ -36,8 +36,8 @@ public:
     void set_name( const std::string &_name );
     void add_song( const song &_song );
 
-    friend std::istream& operator>> ( std::istream &cin, album &_album );
-    friend std::ostream& operator<< ( std::ostream &cout, const album &_album );
+    friend std::istream& operator>> ( std::istream &in, album &_album );
+    friend std::ostream& operator<< ( std::ostream &ut, const album &_album );
 
-    album &operator= ( album& _album );
+    album &operator= ( album &&_album );
 };

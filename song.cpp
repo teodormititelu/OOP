@@ -30,25 +30,25 @@ bool song::has_collaborator( const std::string &collaborator ){
     return false;
 }
 
-std::istream& operator>> ( std::istream &cin, song &_song ){
-    getline( cin, _song.name );
-    getline( cin, _song.release_date );
-    getline( cin, _song.performer );
-    return cin;
+std::istream& operator>> ( std::istream &in, song &_song ){
+    getline( in, _song.name );
+    getline( in, _song.release_date );
+    getline( in, _song.performer );
+    return in;
 }
-std::ostream& operator<< ( std::ostream &cout, const song& _song ){
-    cout << "Name: " << _song.name << '\n';
-    cout << "Released on: " << _song.release_date << '\n';
-    cout << "Performed by: " << _song.performer << '\n';
+std::ostream& operator<< ( std::ostream &out, const song& _song ){
+    out << "Name: " << _song.name << '\n';
+    out << "Released on: " << _song.release_date << '\n';
+    out << "Performed by: " << _song.performer << '\n';
     if( !_song.collaborators.empty() ){
-        cout << "Collaborators: ";
+        out << "Collaborators: ";
         for( int i = 0; i < _song.collaborators.size(); ++i ) {
-            cout << _song.collaborators[i];
-            if( i != _song.collaborators.size()-1 ) cout << ", ";
+            out << _song.collaborators[i];
+            if( i != _song.collaborators.size()-1 ) out << ", ";
         }
-        cout << '\n';
+        out << '\n';
     }
-    return cout;
+    return out;
 }
 
 song &song::operator= ( const song& _song ){
