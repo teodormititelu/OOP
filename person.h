@@ -3,16 +3,14 @@
 #include <iostream>
 #include <string>
 
-using namespace std;
-
 class person{
 
 protected:
 
-    string first_name, last_name;
-    string gender;
+    std::string first_name, last_name;
+    std::string gender;
     int age;
-    string birth_date;
+    std::string birth_date;
 
 public:
 
@@ -20,7 +18,7 @@ public:
         first_name = last_name = gender = birth_date = "None";
         age = 0;
     }
-    person( string f_name, string l_name, string gen, int x, string date){
+    person( const std::string &f_name, const std::string &l_name, const std::string &gen, int x, const std::string &date){
         first_name = f_name;
         last_name = l_name;
         gender = gen;
@@ -28,18 +26,20 @@ public:
         birth_date = date;
     }
 
-    void set_name( string &f_name, string &l_name );
-    void set_gender( string &gen );
-    void set_age( int &x );
-    void set_birth_date( string &date );
+    void set_name( const std::string &f_name, const std::string &l_name );
+    void set_gender( const std::string &gen );
+    void set_age( int x );
+    void set_birth_date( const std::string &date );
 
-    string get_first_name() const;
-    string get_last_name() const;
+    std::string get_first_name() const;
+    std::string get_last_name() const;
+    std::string get_name() const { return get_first_name() + get_last_name(); }
     int get_age() const;
-    string get_birth_date() const;
+    std::string get_birth_date() const;
+    virtual std::string get_job() ;
 
-    friend ostream& operator<< (ostream &cout, const person &p);
-    friend istream& operator>> (istream &cin, person &p);
+    friend std::ostream& operator<< (std::ostream &cout, const person &p);
+    friend std::istream& operator>> (std::istream &cin, person &p);
 
     person &operator=(const person &p);
 

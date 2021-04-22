@@ -2,41 +2,41 @@
 #include <string>
 #include "song.h"
 
-void song::set_name( string &_name ){
+void song::set_name( const std::string &_name ){
     name = _name;
 }
-void song::set_release_date( string &_release_date ){
+void song::set_release_date( const std::string &_release_date ){
     release_date = _release_date;
 }
-void song::set_performer( string &_performer ){
+void song::set_performer( const std::string &_performer ){
     performer = _performer;
 }
-void song::add_collaborator( string &collaborator ){
+void song::add_collaborator( const std::string &collaborator ){
     collaborators.push_back( collaborator );
 }
 
-string song::get_name() const {
+std::string song::get_name() const {
     return name;
 }
-string song::get_release_date() const {
+std::string song::get_release_date() const {
     return release_date;
 }
-string song::get_performer() const {
+std::string song::get_performer() const {
     return performer;
 }
-bool song::has_collaborator( string &collaborator ){
+bool song::has_collaborator( const std::string &collaborator ){
     for( int i = 0; i < collaborators.size(); ++i )
         if( collaborators[i] == collaborator ) return true;
     return false;
 }
 
-istream& operator>> ( istream &cin, song &_song ){
+std::istream& operator>> ( std::istream &cin, song &_song ){
     getline( cin, _song.name );
     getline( cin, _song.release_date );
     getline( cin, _song.performer );
     return cin;
 }
-ostream& operator<< ( ostream &cout, const song& _song ){
+std::ostream& operator<< ( std::ostream &cout, const song& _song ){
     cout << "Name: " << _song.name << '\n';
     cout << "Released on: " << _song.release_date << '\n';
     cout << "Performed by: " << _song.performer << '\n';

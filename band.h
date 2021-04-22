@@ -1,22 +1,22 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
 #include <string>
 #include <vector>
 #include "person.h"
 #include "artist.h"
+#include "manager.h"
 #include "song.h"
 #include "album.h"
 
-using namespace std;
+class band {
 
-class band{
-
-    string name;
-    vector < artist > members;
-    person manager;
-    vector < album > albums;
-    vector < song > singles;
+    std::string name;
+    std::vector < std::shared_ptr < artist > > members;
+    manager mng;
+    std::vector < std::unique_ptr < album > > albums;
+    std::vector < std::unique_ptr < song > > singles;
 
 public:
 
@@ -25,31 +25,42 @@ public:
         members.clear();
         albums.clear();
         singles.clear();
-        manager = person();
+        mng = manager();
     }
-    band( string _name, vector < artist > _members, person _manager, vector < album > _albums, vector < song > _singles){
+    band( const std::string &_name, std::vector < std::shared_ptr < artist > > &_members, const manager &_manager, std::vector < std::unique_ptr < album > > &_albums, std::vector < std::unique_ptr < song > > &_singles){
         name = _name;
-        members = _members;
-        manager = _manager;
-        albums = _albums;
-        singles = _singles;
+
+        for( int i = 0; i < _members.size(); ++i )
+            members.push_back( std::move( _members[i] ) );
+        _members.clear();
+
+        mng = _manager;
+
+        for( int i = 0; i < _albums.size(); ++i )
+            albums.push_back( std::move( _albums[i] ) );
+        _albums.clear();
+
+        for( int i = 0; i < _singles.size(); ++i )
+            singles.push_back( std::move( _singles[i] ) );
+        _singles.clear();
+
     }
     ~band(){
-        cout << name << " broke up\n";
+        std::cout << name << " broke up\n";
     }
 
-    string get_name();
-    person get_manager();
-    bool check_member( artist &_member );
-    bool check_album( album &_album );
-    bool check_single( song &_song );
-    
-    void set_name( string &_name );
-    void set_manager( person &_manager );
-    void add_member( artist &_artist);
+    std::string get_name();
+    manager get_manager();
+    bool check_member( const artist &_member );
+    bool check_song( const song &_song );
+    bool check_single( const song &_song );
+
+    void set_name( const std::string &_name );
+    void set_manager( const manager &_manager );
+    void add_member( const artist &_artist);
     void add_album( album &_album );
-    void add_single( song &_song );
+    void add_single( const song &_song );
     
-    friend ostream& operator<< ( ostream &cout, const band& _band );
+    friend std::ostream& operator<< ( std::ostream &cout, const band& _band );
 };
 

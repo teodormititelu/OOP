@@ -4,33 +4,31 @@
 #include "person.h"
 #include "artist.h"
 
-using namespace std;
-
-void artist::set_role( string &r ){
+void artist::set_role( const std::string &r ){
     role = r;
 }
-void artist::set_intruments( vector < string > &i ){
+void artist::set_intruments( const std::vector < std::string > &i ){
     instruments = i;
 }
-void artist::add_instrument( string &i ){
+void artist::add_instrument( const std::string &i ){
     instruments.push_back( i );
 }
 
-string artist::get_role(){
-    return role;
-}
-vector < string > artist::get_instruments(){
+std::vector < std::string > artist::get_instruments(){
     return instruments;
 }
+std::string artist::get_job() {
+    return role;
+}
 
-bool artist::check_instrument( string &instrument ){
+bool artist::check_instrument( const std::string &instrument ){
     for( int i = 0; i < instruments.size(); ++i ){
         if( instruments[i] == instrument ) return true;
     }
     return false;
 }
 
-ostream& operator<< ( ostream &cout, const artist &a ){
+std::ostream& operator<< ( std::ostream &cout, const artist &a ){
     cout << a.first_name << ' ' << a.last_name << '\n';
     cout << "Main role: " << a.role << '\n';
     cout << "Instruments played: ";
@@ -42,8 +40,9 @@ ostream& operator<< ( ostream &cout, const artist &a ){
     cout << '\n';
     return cout;
 }
-istream& operator>> ( istream &cin, artist &a ){
+std::istream& operator>> ( std::istream &cin, artist &a ){
     cin >> a.first_name >> a.last_name >> a.gender >> a.age >> a.birth_date >> a.role;
+    if( a.age < 0 ) std::cout << a.age << " is not a valid age!";
     return cin;
 }
 
