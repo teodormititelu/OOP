@@ -8,6 +8,7 @@
 class album{
     std::string name;
     std::vector < std::unique_ptr < song > > songs;
+    int length = 0;
 
 public:
     album(){
@@ -16,13 +17,16 @@ public:
     }
     album( const std::string &_name, std::vector < std::unique_ptr < song > > &_songs ){
         name = _name;
-        for( int i = 0; i < _songs.size(); ++i )
-            songs.push_back( std::move( _songs[i] ) );
+        for( int i = 0; i < _songs.size(); ++i ) {
+            length += _songs[i] -> get_seconds();
+            songs.push_back(std::move(_songs[i]));
+        }
         _songs.clear();
     }
     album( album &_album ){
         name = _album.name;
         songs.clear();
+        length = _album.length;
         for( int i = 0; i < _album.songs.size(); ++i )
             songs.push_back( std::move ( _album.songs[i] ) );
         _album.songs.clear();

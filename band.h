@@ -30,9 +30,7 @@ public:
     band( const std::string &_name, std::vector < std::shared_ptr < artist > > &_members, const manager &_manager, std::vector < std::unique_ptr < album > > &_albums, std::vector < std::unique_ptr < song > > &_singles){
         name = _name;
 
-        for( int i = 0; i < _members.size(); ++i )
-            members.push_back( std::move( _members[i] ) );
-        _members.clear();
+        members = _members;
 
         mng = _manager;
 

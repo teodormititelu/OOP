@@ -33,7 +33,7 @@ public:
 
     std::string get_first_name() const;
     std::string get_last_name() const;
-    std::string get_name() const { return get_first_name() + get_last_name(); }
+    std::string get_name() const { return get_first_name() + " " + get_last_name(); }
     int get_age() const;
     std::string get_birth_date() const;
     virtual std::string get_job() ;

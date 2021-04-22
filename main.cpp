@@ -50,15 +50,20 @@ int main() {
 
     manager mng = manager( *members[mng_index-1], band_name );
 
-    person *ptr = &(*members[0]);
-    std::cout << *ptr << "Job: " << ptr -> get_job() << "\n\n";
+    std::cout << *people[0] << '\n';
 
     std::cout << *members[0] << '\n';
 
-    ptr = &mng;
+    person *ptr = &mng;
     std::cout << mng.get_name() << '\n' << ptr -> get_job() << "\n\n";
 
-    std::string a_name, s_name, performer;
+    for( int i = 0; i < members.size(); ++i ){
+        ptr = &(*members[i]);
+        std::cout << ptr -> get_name() << ": " << ptr -> get_job() << "\n";
+    }
+    std:: cout << '\n';
+
+    std::string a_name, s_name, performer, s_length;
     int length;
     std::vector < std::unique_ptr < song >  > songs;
     song _song, single;
@@ -75,13 +80,14 @@ int main() {
         }
         else{
             getline( fin, s_name );
-            getline( fin, date );
             getline( fin, performer );
-            songs.push_back( std::make_unique < song > ( song( s_name, date, performer) ) );
+            getline( fin, date );
+            getline( fin, s_length );
+            songs.push_back( std::make_unique < song > ( song( s_name, performer, date, s_length) ) );
         }
     }
-
-    album Steal_this_album( a_name, songs );
+    std::cout <<"pl";
+    album Steal_this_album( a_name, songs );std::cout << "pl";
     std::cout << Steal_this_album << '\n';
 
     std::cout << Steal_this_album.get_song( 4 ) << '\n';

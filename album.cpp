@@ -30,7 +30,16 @@ void album::set_name( const std::string &_name ){
     name = _name;
 }
 void album::add_song( const song &_song ){
-    songs.push_back( std::make_unique < song > ( _song ) );
+
+    try{
+        songs.push_back( std::make_unique < song > ( _song ) );
+        length += _song.get_seconds();
+        if( length > 7200 ) throw( length );
+    }
+    catch ( int length ){
+        std::cout << name << " lasts longer than 2h [nobody will listen to it]\n";
+    }
+
 }
 
 std::istream& operator>> ( std::istream &in, album &_album ){

@@ -10,6 +10,7 @@ class song{
     std::string release_date;
     std::string performer;
     std::vector < std::string > collaborators;
+    std::string length;
 
     friend class album;
 
@@ -19,9 +20,10 @@ public:
         name = release_date = performer = "None";
         collaborators.clear();
     }
-    song( std::string _name, std::string _release_date, std::string _performer ) {
+    song( std::string _name, std::string _performer, std::string _release_date, std::string _length ) {
         name = _name;
         release_date = _release_date;
+        length = _length;
         performer = _performer;
     }
 
@@ -32,6 +34,8 @@ public:
 
     std::string get_name() const;
     std::string get_release_date() const;
+    std::string get_length() const;
+    int get_seconds() const;
     std::string get_performer() const;
     bool has_collaborator( const std::string &collaborator );
 
