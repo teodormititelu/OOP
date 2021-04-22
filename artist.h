@@ -3,12 +3,10 @@
 #include <iostream>
 #include "person.h"
 
-using namespace std;
-
 class artist : public person{
 
-    string role; // lead vocal, drummer, lead guitar ...
-    vector < string > instruments;
+    std::string role; // lead vocal, drummer, lead guitar ...
+    std::vector < std::string > instruments;
 
 public:
 
@@ -16,23 +14,23 @@ public:
         role = "None";
         instruments.clear();
     }
-    artist( person p ) : person(p){}
-    artist( person p, string r, vector < string > i ) : person(p){
+    artist( const person &p ) : person(p){}
+    artist( const person &p, const std::string &r, const std::vector < std::string > &i ) : person(p){
         role = r;
         instruments = i;
     }
 
-    void set_role( string &r );
-    void set_intruments( vector < string > &i );
-    void add_instrument( string &i );
+    void set_role( const std::string &r );
+    void set_intruments( const std::vector < std::string > &i );
+    void add_instrument( const std::string &i );
 
-    string get_role();
-    vector < string > get_instruments();
+    std::vector < std::string > get_instruments();
+    std::string get_job() override;
 
-    bool check_instrument( string &instrument );
+    bool check_instrument( const std::string &instrument );
 
-    friend ostream& operator<< ( ostream &cout, const artist &a );
-    friend istream& operator>> ( istream &cin, artist &a );
+    friend std::ostream& operator<< ( std::ostream &cout, const artist &a );
+    friend std::istream& operator>> ( std::istream &cin, artist &a );
 
     artist &operator= ( const artist &a );
 

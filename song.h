@@ -4,41 +4,39 @@
 #include <string>
 #include <vector>
 
-using namespace std;
-
 class song{
 
-    string name;
-    string release_date;
-    string performer;
-    vector < string > collaborators;
+    std::string name;
+    std::string release_date;
+    std::string performer;
+    std::vector < std::string > collaborators;
 
     friend class album;
 
 public:
 
     song(){
-        name = release_date = performer = "";
+        name = release_date = performer = "None";
         collaborators.clear();
     }
-    song( string _name, string _release_date, string _performer ) {
+    song( std::string _name, std::string _release_date, std::string _performer ) {
         name = _name;
         release_date = _release_date;
         performer = _performer;
     }
 
-    void set_name( string &_name );
-    void set_release_date( string &_release_date );
-    void set_performer( string &_performer );
-    void add_collaborator( string &collaborator );
+    void set_name( const std::string &_name );
+    void set_release_date(  const std::string &_release_date );
+    void set_performer( const std::string &_performer );
+    void add_collaborator( const std::string &collaborator );
 
-    string get_name() const;
-    string get_release_date() const;
-    string get_performer() const;
-    bool has_collaborator( string &collaborator );
+    std::string get_name() const;
+    std::string get_release_date() const;
+    std::string get_performer() const;
+    bool has_collaborator( const std::string &collaborator );
 
-    friend istream& operator>> ( istream &cin, song &_song );
-    friend ostream& operator<< ( ostream &cout, const song& _song );
+    friend std::istream& operator>> ( std::istream &cin, song &_song );
+    friend std::ostream& operator<< ( std::ostream &cout, const song& _song );
 
     song &operator= ( const song& song );
 

@@ -2,42 +2,44 @@
 #include <string>
 #include "person.h"
 
-using namespace std;
-
-void person::set_name( string &f_name, string &l_name ){
+void person::set_name( const std::string &f_name, const std::string &l_name ){
     first_name = f_name;
     last_name = l_name;
 }
-void person::set_gender( string &gen ){
+void person::set_gender( const std::string &gen ){
     gender = gen;
 }
-void person::set_age( int &x ){
+void person::set_age( int x ){
     age = x;
 }
-void person::set_birth_date( string &date ){
+void person::set_birth_date( const std::string &date ){
     birth_date = date;
 }
-string person::get_first_name() const{
+std::string person::get_first_name() const{
     return first_name;
 }
-string person::get_last_name() const{
+std::string person::get_last_name() const{
     return last_name;
 }
 int person::get_age() const{
     return age;
 }
-string person::get_birth_date() const{
+std::string person::get_birth_date() const{
     return birth_date;
 }
+std::string person::get_job() {
+    return "unemployed";
+}
 
-ostream& operator<< (ostream &cout, const person &p){
+std::ostream& operator<< (std::ostream &cout, const person &p){
     cout << p.first_name << ' ' << p.last_name << '\n';
     cout << "Gender: " << p.gender << '\n';
-    cout << "Age: " << p.age << " (birth date: " << p.birth_date << ")\n";;
+    cout << "Age: " << p.get_age() << " (birth date: " << p.get_birth_date() << ")\n";;
     return cout;
 }
-istream& operator>> (istream &cin, person &p){
+std::istream& operator>> (std::istream &cin, person &p){
     cin >> p.first_name >> p.last_name >> p.gender >> p.age >> p.birth_date;
+    if( p.age < 0 ) std::cout << p.age << " is not a valid age!\n";
     return cin;
 }
 
