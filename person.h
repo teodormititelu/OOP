@@ -25,6 +25,7 @@ public:
         age = x;
         birth_date = date;
     }
+    virtual ~person() {}
 
     void set_name( const std::string &f_name, const std::string &l_name );
     void set_gender( const std::string &gen );

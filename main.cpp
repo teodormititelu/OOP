@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include "band.h"
+#include "festival.h"
 
 std::ifstream fin("sample_input.txt" );
 
@@ -50,7 +51,7 @@ int main() {
 
     manager mng = manager( *members[mng_index-1], band_name );
 
-    std::cout << *people[0] << '\n';
+    std::cout << *dynamic_cast<person*>(members[0].get()) << '\n';
 
     std::cout << *members[0] << '\n';
 
@@ -86,8 +87,8 @@ int main() {
             songs.push_back( std::make_unique < song > ( song( s_name, performer, date, s_length) ) );
         }
     }
-    std::cout <<"pl";
-    album Steal_this_album( a_name, songs );std::cout << "pl";
+
+    album Steal_this_album( a_name, songs );
     std::cout << Steal_this_album << '\n';
 
     std::cout << Steal_this_album.get_song( 4 ) << '\n';
@@ -100,6 +101,21 @@ int main() {
     band SOAD( band_name, members, person(), albums, singles );
 
     std::cout << SOAD << '\n';
+
+    festival JHL( 9, 5, 3, "Jurilovca Heavy Load", 20 );
+    std::shared_ptr RB = std::make_shared< artist >( artist( person( "Razvan", "Bucur", "Male", 20, "05/06/2001" ) ) );
+    std::vector < std::shared_ptr< artist > > A1m ( { RB } );
+    std::vector < std::unique_ptr < song > > A1s;
+    std::vector < std::unique_ptr< album > > A1a;
+    A1a.push_back(std::make_unique< album > ("Bubuie Cernavoda", A1s ));
+    std::vector < std::unique_ptr< song > >A1sg;
+
+    band Anexa1( "Anexa1", A1m, *dynamic_cast <person*> ( RB.get() ),A1a,A1sg );
+
+    JHL.book_band( &SOAD );
+    JHL.book_band( &Anexa1 );
+
+    std::cout << JHL << '\n';
 
     return 0;
 }
