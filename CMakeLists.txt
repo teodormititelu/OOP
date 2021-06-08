@@ -3,4 +3,4 @@ project(Project_1)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Project_1 main.cpp band.cpp band.h person.cpp person.h artist.cpp artist.h song.cpp song.h album.cpp album.h manager.h)
+add_executable(Project_1 main.cpp band.cpp band.h person.cpp person.h artist.cpp artist.h song.cpp song.h album.cpp album.h manager.h festival.cpp festival.h compare.h)
